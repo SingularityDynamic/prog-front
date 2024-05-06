@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { ref } from "vue";
 const model = ref({
   "sales": [
     {
@@ -20,8 +20,6 @@ const loading = ref(false);
 
 // Values to display
 const feeSum = ref(0);
-const totPrice = ref(0);
-
 
 const newValue = ref('');
 const vehicleType = ref('');
@@ -88,7 +86,7 @@ async function getCalculation(vehicle, price) {
                 Sales list
             </summary>
             <ol>
-                <li v-for="(sale, index) in model.sales">
+                <li v-for="(sale, index) in model.sales" :key="index">
                     <a @click="setSelected(index)">{{ sale.vehicleType }}: ${{ sale.salePrice }}<span v-if="index == selected" :id="index"> &lt;</span></a>
                 </li>
             </ol>
